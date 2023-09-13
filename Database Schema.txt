@@ -1,0 +1,70 @@
+Create database fooddelivery;
+use fooddelivery;
+
+//Admin
+create table admin (
+username varchar(255) primary key,
+password varchar(255)
+);
+
+//Product
+create table product (
+id int NOT NULL AUTO_INCREMENT primary key,
+price int,
+avail varchar(255),
+category varchar(255),
+des varchar(255),
+name varchar(255),
+PRIMARY KEY (id)
+
+);
+
+//Customer
+create table customer (
+email varchar(255) primary key,
+address varchar(255),
+contact long,
+name varchar(255),
+password varchar(255)
+PRIMARY KEY (id)
+);
+
+//cart
+create table cart (
+price int,
+quantity int,
+id int primary key,
+product_id int, 
+FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
+
+//purchase
+create table purchase (
+id int primary key,
+dop date,
+productname varchar(255),
+quantity int,
+totalcost int,
+transactionid long,
+customer_email varchar(255),
+FOREIGN KEY (customer_email) REFERENCES customer(customer_email)
+);
+
+Insert into admin values ("admin1", "admin123");
+
+Insert into product values (150, "yes", "Veg", "Delicious", "Panneer Sandwich");
+Insert into product values (160, "yes", "NonVeg", "Spicy", "Chicken Sandwich");
+Insert into product values (140, "No", "Veg", "Delicious", "Cheese corn Sandwich");
+Insert into product values (150, "yes", "Dessert", "Tasty", "Almond and Date Cake");
+
+
+Insert into cart values (300, 2, 1, 1);
+Insert into cart values (140, 1, 2, 3);
+
+Insert into customer values ("cust1@gmail.com", "TamilNadu", 9876543210, "Customer One", "cust1");
+Insert into customer values ("cust2@gmail.com", "Kerala", 9876543220, "Customer Two", "cust2");
+
+Insert into purchase values ("2023-09-13", "Almond and Date Cake", 3,	450, "123AB56789", "cust2@gmail.com");
+Insert into purchase values ("2023-09-13", "Chicken Sandwich", 3, 320, "123AB9LM89", "cust1@gmail.com");
+
+
